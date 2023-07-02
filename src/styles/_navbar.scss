@@ -1,0 +1,32 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 100px;
+}
+
+.nav-title {
+    font-size: 4.0rem;
+    color: #4980FF;
+}
+
+.nav-item {
+    display: flex;
+    list-style-type: none;
+    gap: 30px;
+}
+
+.nav-item-1 {
+    color: #4980FF;
+    font-size: 1.8rem;
+}
+
+a:link, :visited, :active {
+    text-decoration: none;
+    color: #4980ff;
+}
+
+.nav-item-2 {
+    color: #4980FF;
+    font-size: 1.8rem;   
+}
