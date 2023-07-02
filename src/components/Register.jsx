@@ -37,18 +37,17 @@ const Register = () => {
     } = useForm();
     // const onSubmit = data => console.log(data);
 
-    const auth = getAuth(); 
-
+    const auth = getAuth();
     const onSubmit = async (data) => {
         try {
-          const { email, password } = data;
-          await createUserWithEmailAndPassword(auth, email, password);
-          console.log('User registered successfully!');
+            const { email, password } = data;
+            await createUserWithEmailAndPassword(auth, email, password);
+            console.log('User registered successfully!');
         } catch (error) {
-          console.log('Error registering user:', error.message);
-          setError(error.message)
+            console.log('Error registering user:', error.message);
+            setError(error.message)
         }
-      };
+    };
 
 
     return (
@@ -60,7 +59,7 @@ const Register = () => {
 
                 <div className='register-form'>
                     <form onSubmit={handleSubmit(onSubmit)} className='register'>
-                    {error && <p className="email-error">Email already in use</p>}
+                        {error && <p className="email-error">Email already in use</p>}
                         <div className='register-item'>
                             <label className='register-label'>First Name:</label>
                             <input

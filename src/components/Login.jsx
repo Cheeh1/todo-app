@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {
     Email_Regex_Validation,
     Password_Regex_Validation
@@ -12,6 +13,10 @@ const Login = () => {
         email: "",
         password: ""
     });
+
+    const [error, setError] = useState("");
+    const [userNotFoundError, setUserNotFoundError] = useState("");
+    const [wrongPasswordError, setWrongPasswordError] = useState("");
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -29,7 +34,25 @@ const Login = () => {
         watch,
         formState: { errors }
     } = useForm();
-    const onSubmit = data => console.log(data);
+    // const onSubmit = data => console.log(data);
+
+    const auth = getAuth();
+    const onSubmit = async (data) => {
+        try {
+            const { email, password } = data;
+            await signInWithEmailAndPassword(auth, email, password);
+            console.log('User logged in successfully!');
+        } catch (error) {
+            console.log('Error logging user:', error.message);
+            if (error.code === "auth/user-not-found") {
+                setUserNotFoundError("User not found.");
+            } else if (error.code === "auth/wrong-password") {
+                setWrongPasswordError("Wrong password.");
+            } else {
+                setError(error.message)
+            }
+        }
+    };
 
     return (
         <>
@@ -40,6 +63,8 @@ const Login = () => {
 
                 <section className='login-form'>
                     <form onSubmit={handleSubmit(onSubmit)} className='login'>
+                        {userNotFoundError && <p className="login-error">{userNotFoundError}</p>}
+                        {wrongPasswordError && <p className="login-error">{wrongPasswordError}</p>}
                         <div className='login-item'>
                             <label>Email:</label>
                             <input
@@ -55,7 +80,6 @@ const Login = () => {
                                     pattern: Email_Regex_Validation,
                                 })}
                             />
-                            {errors.email && <p className="login-error">Not a valid email format</p>}
                         </div>
                         <div className='login-item'>
                             <label>Password:</label>
@@ -72,11 +96,6 @@ const Login = () => {
                                     pattern: Password_Regex_Validation,
                                 })}
                             />
-                            {errors.password && (
-                                <p className="login-error">
-                                    Wrong password format
-                                </p>
-                            )}
                             <a href='#forgotten'>forgotten password?</a>
                         </div>
 
