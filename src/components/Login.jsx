@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+// import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import {
     Email_Regex_Validation,
     Password_Regex_Validation
 } from "../lib";
 import image from '../assets/trip.png'
+
+// const provider = new GoogleAuthProvider();
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -54,6 +57,32 @@ const Login = () => {
         }
     };
 
+    // function for google authentication
+    const signInWithGoogle = () => {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+                console.log(user);
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+                console.error(error);
+            });
+    };
+
     return (
         <>
             <section className='homepage'>
@@ -66,7 +95,7 @@ const Login = () => {
                         {userNotFoundError && <p className="login-error">{userNotFoundError}</p>}
                         {wrongPasswordError && <p className="login-error">{wrongPasswordError}</p>}
                         <div className='login-item'>
-                            <label>Email:</label>
+                            <label className='login-label'>Email:</label>
                             <input
                                 type="text"
                                 name="email"
@@ -82,7 +111,7 @@ const Login = () => {
                             />
                         </div>
                         <div className='login-item'>
-                            <label>Password:</label>
+                            <label className='login-label'>Password:</label>
                             <input
                                 type="text"
                                 name="password"
@@ -96,15 +125,25 @@ const Login = () => {
                                     pattern: Password_Regex_Validation,
                                 })}
                             />
-                            <a href='#forgotten'>forgotten password?</a>
+                            <a className='forgotten' href='#forgotten'>forgotten password?</a>
                         </div>
 
                         <input type="submit" className='login-btn' value="Login" />
 
+                        <div className='google'>
+                            <p className='google-text'>Sign in with:</p>
+                            <div className='google-item'>
+                                <hr className='google-line' />
+                                <div onClick={signInWithGoogle}>
+                                    <i className="fa-brands fa-google google-logo"></i>
+                                </div>
+                                <hr />
+                            </div>
+                        </div>
                     </form>
 
                     <div>
-                        <p className='sign-up'>Don't have an account? <Link to='/register'>Sign Up</Link></p>
+                        <p className='sign-up'>Don't have an account? <Link className='sign-up-link' to='/register'>Sign Up</Link></p>
                     </div>
                 </section>
 
@@ -112,5 +151,4 @@ const Login = () => {
         </>
     )
 }
-
 export default Login

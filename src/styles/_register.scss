@@ -31,7 +31,8 @@
 }
 
 .register-label {
-    width: 30%;
+  font-family: 'Open sans', sans-serif;
+  font-weight: 500;
 }
 
 .register-field {
@@ -42,6 +43,8 @@
   width: 250px;
   height: 40px;
   font-size: 1.5rem;
+  font-family: 'Open sans', sans-serif;
+  font-weight: 500;
 }
 
 .register-field::placeholder {
@@ -52,13 +55,6 @@
   padding-left: 10px;
 }
 
-a:link,
-:visited,
-:active {
-  text-decoration: none;
-  color: #4980ff;
-}
-
 .register-btn {
   padding: 10px 5px;
   border-radius: 10px;
@@ -66,22 +62,45 @@ a:link,
   background-color: #4980ff;
   color: #ffff;
   font-size: 1.5rem;
-//   width: 40%;
+  //   width: 40%;
   cursor: pointer;
+  font-family: 'Open sans', sans-serif;
+  font-weight: 700;
 }
 
 .sign-in {
   text-align: center;
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
+  font-family: 'Open sans', sans-serif;
+  font-weight: 500;
+}
+
+.sign-in-link {
+  color: #4980ff;
+}
+
+.sign-in-link:link,
+:visited,
+:active {
+  text-decoration: none;
 }
 
 .register-error {
   color: #ff0000;
   width: 30%;
+  font-family: 'Roboto', sans-serif;
+  font-family: 500;
+  font-size: 1.3rem;
 }
 
 .email-error {
-  color: #ff0000;
+  color: #ffff;
+  background-color: #ff0000;
+  padding: 5px 5px;
+  border-radius: 5px;
   font-size: 2.5rem;
   font-weight: 700;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-family: 800;
 }

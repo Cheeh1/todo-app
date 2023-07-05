@@ -8,25 +8,39 @@
 .nav-title {
     font-size: 4.0rem;
     color: #4980FF;
+    font-family: 'Open sans', sans-serif;
+    font-weight: 900;
 }
 
 .nav-item {
     display: flex;
     list-style-type: none;
+    align-items: center;
     gap: 30px;
 }
 
-.nav-item-1 {
+.nav-sign-in {
     color: #4980FF;
     font-size: 1.8rem;
+    font-weight: 700;
+    font-family: 'Open sans', sans-serif;
 }
 
-a:link, :visited, :active {
+.nav-sign-in:link, :visited, :active {
     text-decoration: none;
-    color: #4980ff;
 }
 
-.nav-item-2 {
-    color: #4980FF;
-    font-size: 1.8rem;   
+.nav-sign-up {
+    border: 1px solid #4980FF;
+    padding: 7px 10px;
+    color: #ffff;
+    background-color: #4980FF;
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: 'Open sans', sans-serif;
+    border-radius: 5px;
+}
+
+.nav-sign-up:link, :visited, :active {
+    text-decoration: none;
 }
