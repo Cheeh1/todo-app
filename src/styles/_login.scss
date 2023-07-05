@@ -121,16 +121,29 @@
 .google-text {
   font-size: 1.8rem;
   font-weight: 500;
-  font-family: 'Open sans', sans-serif;
+  font-family: "Open sans", sans-serif;
 }
 
 .google-item {
   display: flex;
   gap: 20px;
-  justify-content: center;  
+  justify-content: center;
 }
 
 .google-logo {
   cursor: pointer;
 }
 
+.password-field-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  padding: 10px;
+  min-width: 40px;
+  cursor: pointer;
+}

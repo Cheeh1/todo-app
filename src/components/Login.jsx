@@ -21,6 +21,13 @@ const Login = () => {
     const [userNotFoundError, setUserNotFoundError] = useState("");
     const [wrongPasswordError, setWrongPasswordError] = useState("");
 
+    // password visibilty
+    const [showPassword, setShowPassword] = useState(false)
+
+    const passwordVisibility = () => {
+        setShowPassword(!showPassword)
+    }
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => {
@@ -112,19 +119,25 @@ const Login = () => {
                         </div>
                         <div className='login-item'>
                             <label className='login-label'>Password:</label>
-                            <input
-                                type="text"
-                                name="password"
-                                id="password"
-                                placeholder='******'
-                                className='login-field'
-                                defaultValue={formData.password}
-                                onChange={handleChange}
-                                {...register("password", {
-                                    required: true,
-                                    pattern: Password_Regex_Validation,
-                                })}
-                            />
+                            <div className='password-field-container'>
+                                <input
+                                    type={showPassword ? "text" : 'password'}
+                                    name="password"
+                                    id="password"
+                                    placeholder='******'
+                                    className='login-field'
+                                    defaultValue={formData.password}
+                                    onChange={handleChange}
+                                    {...register("password", {
+                                        required: true,
+                                        pattern: Password_Regex_Validation,
+                                    })}
+                                />
+                                <span className='toggle-password' onClick={passwordVisibility}>
+                                    {showPassword ? <i class="fa-solid fa-eye"></i> : <i class="fa-solid fa-eye-slash"></i>}
+                                </span>
+                            </div>
+
                             <a className='forgotten' href='#forgotten'>forgotten password?</a>
                         </div>
 
