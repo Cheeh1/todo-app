@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-// import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from "firebase/auth";
 import {
     Email_Regex_Validation,
     Password_Regex_Validation
@@ -134,11 +133,11 @@ const Login = () => {
                                     })}
                                 />
                                 <span className='toggle-password' onClick={passwordVisibility}>
-                                    {showPassword ? <i class="fa-solid fa-eye"></i> : <i class="fa-solid fa-eye-slash"></i>}
+                                    {showPassword ? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
                                 </span>
                             </div>
 
-                            <a className='forgotten' href='#forgotten'>forgotten password?</a>
+                            <Link to="/forgotten" className='forgotten'>Forgot password?</Link>
                         </div>
 
                         <input type="submit" className='login-btn' value="Login" />

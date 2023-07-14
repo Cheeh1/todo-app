@@ -73,6 +73,7 @@ const Register = () => {
                                 type="text"
                                 name="firstName"
                                 id="firstName"
+                                autoComplete='firstName'
                                 placeholder='first name'
                                 className='register-field'
                                 defaultValue={formData.firstName}
@@ -90,6 +91,7 @@ const Register = () => {
                                 type="text"
                                 name="lastName"
                                 id="lastName"
+                                autoComplete='lastName'
                                 placeholder='last name'
                                 className='register-field'
                                 defaultValue={formData.lastName}
@@ -107,6 +109,7 @@ const Register = () => {
                                 type="text"
                                 name="email"
                                 id="email"
+                                autoComplete='email'
                                 placeholder='yourname@gmail.com'
                                 className='register-field'
                                 defaultValue={formData.email}
@@ -136,7 +139,7 @@ const Register = () => {
                                     })}
                                 />
                                 <span className='toggle-password' onClick={passwordVisibility}>
-                                    {showPassword ? <i class="fa-solid fa-eye"></i> : <i class="fa-solid fa-eye-slash"></i>}
+                                    {showPassword ? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
                                 </span>
                             </div>
                             {errors.password && (
