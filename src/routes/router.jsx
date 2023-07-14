@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from '../components/Navbar'
-import Login from '../components/Login'
-import Register from '../components/Register'
-import Forgotten from '../components/Forgotten'
+import Login from '../pages/Login'
+import Register from '../pages/Register'
+import Forgotten from '../pages/Forgotten'
 
 const RouterLink = () => {
     return (
