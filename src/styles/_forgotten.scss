@@ -70,3 +70,14 @@
     top: -40px;
     background-color: #ff0000;
 }
+
+@media screen and (max-width: 480px) {
+    .forgotten-container {
+        margin: 200px 50px;
+    }
+
+    .forgot-error-1, .forgot-error-2 {
+        top: -70px;
+    }
+
+}

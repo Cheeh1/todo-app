@@ -44,3 +44,18 @@
 .nav-sign-up:link, :visited, :active {
     text-decoration: none;
 }
+
+@media screen and (max-width: 480px) {
+    .nav {
+        justify-content: space-evenly;
+        padding: 15px 0;
+    }
+
+    .nav-title {
+        font-size: 2.5rem;
+    }
+
+    .nav-sign-in, .nav-sign-up {
+        font-size: 1.5rem;
+    }
+}
