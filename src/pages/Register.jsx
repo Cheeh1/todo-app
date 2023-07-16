@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import '../firebase';
+import '../config/firebase.js';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import image from '../assets/trip.png';
 import {
     Email_Regex_Validation,
     Password_Regex_Validation
-} from "../lib";
+} from "../utils/regexValidation.js";
 
 const Register = () => {
     const [formData, setFormData] = useState({

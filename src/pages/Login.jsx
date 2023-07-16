@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {
     Email_Regex_Validation,
     Password_Regex_Validation
-} from "../lib";
+} from "../utils/regexValidation";
 import image from '../assets/trip.png'
 
 // const provider = new GoogleAuthProvider();
@@ -64,6 +64,7 @@ const Login = () => {
     };
 
     // function for google authentication
+    const provider = new GoogleAuthProvider();
     const signInWithGoogle = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
@@ -142,14 +143,15 @@ const Login = () => {
 
                         <input type="submit" className='login-btn' value="Login" />
 
-                        <div className='google'>
-                            <p className='google-text'>Sign in with:</p>
-                            <div className='google-item'>
-                                <hr className='google-line' />
-                                <div onClick={signInWithGoogle}>
-                                    <i className="fa-brands fa-google google-logo"></i>
-                                </div>
-                                <hr />
+                        <div className='google-auth'>
+                            <div className='google-line'>
+                                <hr className='line' />
+                                <p className='line-text'>OR</p>
+                                <hr className='line' />
+                            </div>
+                            <div onClick={signInWithGoogle} className='google-1'>
+                                <i className="fa-brands fa-google google-logo"></i>
+                                <p className='google-text'>Continue with google</p>
                             </div>
                         </div>
                     </form>
