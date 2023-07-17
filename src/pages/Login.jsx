@@ -1,94 +1,29 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { useForm } from 'react-hook-form';
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {
     Email_Regex_Validation,
     Password_Regex_Validation
 } from "../utils/regexValidation";
-import image from '../assets/trip.png'
-
-// const provider = new GoogleAuthProvider();
+import image from '../assets/Images/trip.png'
+import useFormInput from '../hooks/useForm';
+import useLogin from '../hooks/auth/useLogin';
 
 const Login = () => {
-    const [formData, setFormData] = useState({
-        email: "",
-        password: ""
-    });
-
-    const [error, setError] = useState("");
-    const [userNotFoundError, setUserNotFoundError] = useState("");
-    const [wrongPasswordError, setWrongPasswordError] = useState("");
-
-    // password visibilty
-    const [showPassword, setShowPassword] = useState(false)
-
-    const passwordVisibility = () => {
-        setShowPassword(!showPassword)
-    }
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevFormData) => {
-            return {
-                ...prevFormData,
-                [name]: value,
-            };
-        });
-    };
 
     const {
+        showPassword,
+        passwordVisibility,
         register,
-        handleSubmit,
-        watch,
-        formState: { errors }
-    } = useForm();
-    // const onSubmit = data => console.log(data);
+        handleSubmit
+    } = useFormInput();
 
-    const auth = getAuth();
-    const onSubmit = async (data) => {
-        try {
-            const { email, password } = data;
-            await signInWithEmailAndPassword(auth, email, password);
-            console.log('User logged in successfully!');
-        } catch (error) {
-            console.log('Error logging user:', error.message);
-            if (error.code === "auth/user-not-found") {
-                setUserNotFoundError("User not found.");
-            } else if (error.code === "auth/wrong-password") {
-                setWrongPasswordError("Wrong password.");
-            } else {
-                setError(error.message)
-            }
-        }
-    };
-
-    // function for google authentication
-    const provider = new GoogleAuthProvider();
-    const signInWithGoogle = () => {
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                // The signed-in user info.
-                const user = result.user;
-                // IdP data available using getAdditionalUserInfo(result)
-                // ...
-                console.log(user);
-            })
-            .catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
-                console.error(error);
-            });
-    };
+   const {
+    formData,
+    handleChange,
+    userNotFoundError,
+    wrongPasswordError,
+    onSubmit,
+    signInWithGoogle
+   } = useLogin();
 
     return (
         <>

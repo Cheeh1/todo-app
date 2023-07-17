@@ -1,61 +1,28 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import '../config/firebase.js';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import image from '../assets/trip.png';
+import image from '../assets/Images/trip.png';
 import {
     Email_Regex_Validation,
     Password_Regex_Validation
 } from "../utils/regexValidation.js";
+import useRegister from '../hooks/auth/useRegister';
+import useFormInput from '../hooks/useForm';
 
 const Register = () => {
-    const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: ""
-    });
-
-    const [error, setError] = useState("");
-
-    // password visibilty
-    const [showPassword, setShowPassword] = useState(false)
-
-    const passwordVisibility = () => {
-        setShowPassword(!showPassword)
-    }
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevFormData) => {
-            return {
-                ...prevFormData,
-                [name]: value,
-            };
-        });
-    };
 
     const {
+        formData,
+        error,
+        onSubmit
+    } = useRegister();
+
+    const {
+        showPassword,
+        passwordVisibility,
+        handleChange,
         register,
         handleSubmit,
-        watch,
-        formState: { errors }
-    } = useForm();
-    // const onSubmit = data => console.log(data);
-
-    const auth = getAuth();
-    const onSubmit = async (data) => {
-        try {
-            const { email, password } = data;
-            await createUserWithEmailAndPassword(auth, email, password);
-            console.log('User registered successfully!');
-        } catch (error) {
-            console.log('Error registering user:', error.message);
-            setError(error.message)
-        }
-    };
-
+        errors
+    } = useFormInput();
 
     return (
         <>
