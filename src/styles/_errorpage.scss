@@ -1,0 +1,79 @@
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(73, 128, 255);
+  border-radius: 20px;
+  margin: 0 60px 10px 60px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.error-items {
+  display: flex;
+  align-items: center;
+  margin-top: -100px;
+}
+
+.error-item-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.error-item-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.error-txt-1 {
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 6.4rem;
+  font-weight: 700;
+}
+
+.error-txt-2 {
+  color: #fff;
+  font-family: "Open sans", sans-serif;
+  font-size: 5.6rem;
+  font-weight: 500;
+}
+
+.error-txt-3 {
+  color: #fff;
+  font-family: "Open sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  width: 60%;
+}
+
+.error-btn {
+  display: flex;
+  justify-content: center;
+  padding: 10px 5px;
+  width: 150px;
+  border-radius: 10px;
+  background-color: #2a63e7;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border: 1px solid rgb(73, 128, 255);
+}
+
+.error-btn:link {
+  text-decoration: none;
+}
+
+.error-404 {
+  color: #fff;
+  font-family: "Open sans" sans-serif;
+  font-size: 15rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 5rem;
+}

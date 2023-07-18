@@ -3,17 +3,19 @@ import Navbar from '../components/Navbar'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Forgotten from '../pages/Forgotten'
+import ErrorPage from '../pages/ErrorPage'
 
 const RouterLink = () => {
-    return (
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path='/' element={<Login />}/>
-            <Route path='/register' element={<Register />}/>
-            <Route path='/forgotten' element={<Forgotten />}/>
-          </Routes>
-        </Router>
-      );
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/forgotten' element={<Forgotten />} />
+        <Route path='*' element={<ErrorPage />} />
+      </Routes>
+    </Router>
+  );
 };
 export default RouterLink;
